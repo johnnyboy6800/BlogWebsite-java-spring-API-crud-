@@ -27,7 +27,7 @@ public class Controlador {
 	
     	  return "signin";
    }
-		 
+//mapping para exibir página home ao clicar no link 'home'	 
    @GetMapping("/Home")
    public ModelAndView getHome() {
        ModelAndView mv = new ModelAndView("Home");
@@ -38,7 +38,7 @@ public class Controlador {
 
    
    
-   
+   //mapping necessário para exibir a página home e exibir os posts realizados
     @GetMapping("/")
     public ModelAndView getPost() {
         ModelAndView mv = new ModelAndView("Home");
@@ -47,6 +47,8 @@ public class Controlador {
         return mv;
     }
 
+
+ // Adiciona o blog ao modelo, atráves desse controlador é possível buscar um blog em especifico usando o seu 'id'
     @GetMapping("/Post/{id}")
     public String displayPost(@PathVariable Integer id, Model model) {
         // Busca o post no banco de dados
@@ -54,7 +56,7 @@ public class Controlador {
         if(blog == null) {
             throw new RuntimeException("Post com o id" + id + "não encontrado");
         }
-        // Adiciona o blog ao modelo
+       
         model.addAttribute("blog", blog);
 
         return "Post";
@@ -65,7 +67,7 @@ public class Controlador {
             Blogs_t savedBlog = service.save(blogs_T);
             return new ResponseEntity<>(savedBlog, HttpStatus.CREATED);
         }
-//Deleta um blog existente
+//Deleta um blog existente, atráves da especificação de seu id
         @DeleteMapping(path = "/deletar/blogs/{id}")
         public ResponseEntity<Optional<Blogs_t>> deleteById (@PathVariable Integer id){
             try {
@@ -76,7 +78,7 @@ public class Controlador {
                 return new ResponseEntity<Optional<Blogs_t>>(HttpStatus.NOT_FOUND);
             }
         }
-//Edita um blog existente
+//Edita um blog existente através da especificação de seu id
         @PutMapping(path = "/editar/blogs/{id}")
         public ResponseEntity<Blogs_t> update (@PathVariable Integer id, @RequestBody Blogs_t blogs_t){
             Blogs_t atualizado = service.updating(id, blogs_t);
