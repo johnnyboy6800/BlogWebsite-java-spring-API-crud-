@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<h1 th:text="${blog.title}">Título do Blog</h1>
-<p th:text="${blog.blog_post}">Conteúdo do Blog</p>
-<p>Publicado em: <span th:text="${blog.criadoEm}">Data</span></p>
-<a href="/">Voltar para a Home</a>
+<div >
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<h1 style="color: white;" th:text="${blog.title}">Título do Blog</h1>
+	<p style="color: white;" th:text="${blog.blog_post}">Conteúdo do Blog</p>
+	<p style="color: white;">Publicado em: <span th:text="${blog.criadoEm}">Data</span></p>
+	<a style="color: white;" href="/">Voltar para a Home</a>
+<div>
 </html>
